@@ -1,4 +1,5 @@
 gtk2
+jetbrains-toolbox
 lib32-gtk2
 visual-studio-code-bin
 yay

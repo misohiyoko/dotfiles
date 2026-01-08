@@ -12,6 +12,7 @@ fcitx5-configtool 5.1.12-1
 fcitx5-gtk 5.1.4-2
 fcitx5-mozc 2.32.5994.102.g7cd777dbb-1
 firefox 146.0.1-1
+flatpak 1:1.16.2-1
 git 2.52.0-2
 github-cli 2.83.2-1
 gnome-keyring 1:48.0-1
@@ -24,6 +25,7 @@ hyprland 0.53.0-2
 hyprpaper 0.8.1-1
 hyprpolkitagent 0.1.3-4
 iwd 3.10-1
+jetbrains-toolbox 3.2.0.65851-1
 kitty 0.45.0-3
 lib32-gtk2 2.24.33-5
 lib32-mesa 1:25.3.3-1

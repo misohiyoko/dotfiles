@@ -12,6 +12,7 @@ fcitx5-configtool
 fcitx5-gtk
 fcitx5-mozc
 firefox
+flatpak
 git
 github-cli
 gnome-keyring

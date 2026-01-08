@@ -1,0 +1,5 @@
+gtk2
+lib32-gtk2
+visual-studio-code-bin
+yay
+yay-debug

@@ -1,0 +1,39 @@
+# エディタ/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 一時ファイル
+*.tmp
+*.log
+
+# 個人情報を含む可能性のあるファイル
+.config/gh/
+.config/Code/
+.ssh/
+.gnupg/
+
+# キャッシュディレクトリ
+.cache/
+__pycache__/
+
+# 設定ファイル内の機密情報
+**/secrets/
+**/*secret*
+**/*password*
+**/*token*
+.env
+.env.local
+
+# fcitx5のユーザー辞書（個人的な単語が含まれる場合）
+.config/fcitx5/conf/*.conf.bak
+
+# バックアップファイル
+*.backup
+*.bak

@@ -18,11 +18,15 @@ CONFIG_FILES=(
     ".config/gtk-4.0"
     ".config/htop"
     ".config/electron-flags.conf"
+    ".config/wofi"
+    ".config/waybar"
+    ".config/yay"
 
     # ホーム直下のdotfiles
     ".bashrc"
     ".zshrc"
     ".gitconfig"
+    "dolphinrc"
     ".xinitrc"
     ".xprofile"
 )

@@ -19,11 +19,14 @@ dotfiles/
 │   ├── kitty/        # Kittyターミナル設定
 │   ├── fcitx5/       # fcitx5入力メソッド設定
 │   └── ...
+├── wallpaper/        # 壁紙ファイル
 ├── scripts/          # 管理スクリプト
 │   ├── backup.sh              # 設定ファイルをdotfilesにコピー
 │   ├── install.sh             # シンボリックリンクを展開
 │   ├── save-packages.sh       # パッケージリストを保存
-│   └── restore-packages.sh    # パッケージリストから復元
+│   ├── restore-packages.sh    # パッケージリストから復元
+│   ├── set-wallpaper.sh       # 壁紙を設定
+│   └── wallpaper-timer.sh     # 定期的に壁紙をランダム変更
 └── packages/         # パッケージリスト
     ├── pkglist.txt            # 公式リポジトリパッケージ
     ├── aurlist.txt            # AURパッケージ
@@ -74,11 +77,41 @@ git commit -m "Update configs"
 git push
 ```
 
+### 壁紙を設定する
+
+壁紙は `~/dotfiles/wallpaper/` ディレクトリで管理されます。
+
+```bash
+# 対話的に壁紙を選択
+./scripts/set-wallpaper.sh
+
+# 壁紙を指定して設定
+./scripts/set-wallpaper.sh wallpaper.jpg
+
+# ランダムに壁紙を設定
+./scripts/set-wallpaper.sh --random
+
+# 定期的に壁紙を変更（30分ごと）
+./scripts/wallpaper-timer.sh 30
+```
+
+新しい壁紙を追加：
+```bash
+# 壁紙ファイルを追加
+cp /path/to/your/wallpaper.jpg ~/dotfiles/wallpaper/
+
+# Git管理に追加
+cd ~/dotfiles
+git add wallpaper/
+git commit -m "Add new wallpaper"
+```
+
 ## 注意事項
 
 - `install.sh` 実行時、既存のファイルは自動的にバックアップされます
 - バックアップは `~/.dotfiles_backup_YYYYMMDD_HHMMSS/` に保存されます
-- `--force` オプションで確認なしで上書きできます（非推奨）
+- `--force` オプションで確認なしで上書きできます
+- シンボリックリンク使用時は、設定ファイルの直接編集が即座にdotfilesに反映されます
 
 ## トラブルシューティング
 

@@ -1,6 +1,8 @@
 gtk2
 jetbrains-toolbox
 lib32-gtk2
+lmstudio
+openai-codex-bin
 visual-studio-code-bin
 yay
 yay-debug

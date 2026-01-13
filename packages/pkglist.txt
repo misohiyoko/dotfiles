@@ -13,6 +13,7 @@ fcitx5-gtk
 fcitx5-mozc
 firefox
 flatpak
+font-manager
 git
 github-cli
 gnome-keyring
@@ -24,6 +25,7 @@ hyprland
 hyprpaper
 hyprpolkitagent
 iwd
+jq
 kitty
 lib32-mesa
 lib32-vulkan-radeon
@@ -38,8 +40,10 @@ noto-fonts-cjk
 noto-fonts-emoji
 ntfs-3g
 nvm
+pamixer
 pavucontrol
 pipewire-pulse
+pnpm
 powertop
 qt5-wayland
 qt6-wayland
@@ -47,9 +51,10 @@ radeontop
 smartmontools
 starship
 steam
+ttf-firacode-nerd
 ttf-jetbrains-mono
-ttf-nerd-fonts-symbols
 unzip
+uv
 vulkan-radeon
 waybar
 wireplumber

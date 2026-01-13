@@ -21,6 +21,7 @@ CONFIG_FILES=(
     ".config/wofi"
     ".config/waybar"
     ".config/yay"
+    ".config/starship.toml"
 
     # ホーム直下のdotfiles
     ".bashrc"
@@ -29,6 +30,9 @@ CONFIG_FILES=(
     "dolphinrc"
     ".xinitrc"
     ".xprofile"
+
+    # ユーザースクリプト
+    ".local/bin"
 )
 
 echo "設定ファイルをdotfilesにバックアップ中..."

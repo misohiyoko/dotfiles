@@ -1,0 +1,322 @@
+{
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) - Chromium": " $1",
+            "(.*) - VSCodium": "󰨞 $1",
+            "(.*) - Thunar": " $1",
+            "(.*) - Discord": " $1",
+            "Unity - (.*)": " $1",
+            "Steam": " Steam",
+            "WhatsDesk": " WhatsDesk",
+            "Kitty": " $1",
+            "class<org.telegram.desktop>": " $1",
+            "class<spotify>": " Spotify",
+            "class<unityhub>": " UnityHub",
+            "class<zenity>": "  Lenovo Vantage"
+        },
+        "icon": false,
+        "separate-output": true
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "active-only": false,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{name}{icon}{windows}",
+        "format-icons": {
+            "urgent": "  ",
+            "default": " ",
+            "empty": ""
+        },
+        "window-rewrite": { // TODO complete
+            "title<.*youtube.*>": " ", 
+            "(.*) - Chromium": " ",
+            "(.*)VSCodium": "󰨞 ",
+            "class<Codium>": "󰨞 ",
+            "(.*) - Thunar": " ",
+            "class<discord>": " ",
+            "Steam": " ",
+            "class<org.telegram.desktop>": " ",
+            "WhatsDesk": " ",
+            "Kitty": " ",
+            "class<spotify>": " ",
+            "class<notion>": " ", // TODO add notion's symbol icon
+            "class<unityhub>": " ",
+            "class<Unity>": " ",
+            "class<zenity": " ",
+            "class<MuPDF>": " ",
+            "title<Aggiornamenti>": " ",
+            "title<Pacchetti Installati>": " "
+	},
+        "persistent-workspaces": {
+            "*": 10,
+            "DP-2": [11, 12],
+            "HDMI-A-1": [13, 14]
+        }
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "locale": "ja_JP.UTF-8",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:L%a %d/%m/%y (%H:%M:%S)}",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    }
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "tooltip-format": "Brightness",
+        "tooltip": true
+    },
+
+    "battery": {
+        "states": {
+            "good": 75,
+            "warning": 35,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon}   {volume}%",
+        "tooltip": true,
+        "format-muted": "",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+    
+    "temperature": {
+        "thermal-zone": 7,
+        "interval": 5,
+        "format": "{icon}{temperatureC}°C",
+        "format-icons": [" "],
+        "format-alt-click": "click-right",
+        "critical-threshold": 80,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "kitty --title btop sh -c 'btop'",
+        "tooltip-format": "CPU Temperature",
+        "tooltip": true
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "   {usage}%",
+        "format-alt": "   {avg_frequency}GHz",
+        "max-length": 10,
+        "on-click": "kitty --title htop sh -c 'htop'",
+        "tooltip": true,
+        "tooltip-format": "CPU Usage: {usage}%\nAvg Frequency: {avg_frequency}GHz"
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": "   {percentage}%",
+        "format-alt": "   {used:0.1f}G/{total:0.1f}G",
+        "max-length": 10,
+        "on-click": "kitty --title htop sh -c 'htop'",
+        "tooltip": true,
+        "tooltip-format": "Memory: {used:0.1f}GB / {total:0.1f}GB ({percentage}%)\nSwap: {swapUsed:0.1f}GB / {swapTotal:0.1f}GB"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // internet speed: "
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+        "tooltip-format": "{ifname}: via {gwaddr} \n<small>down/up:  {bandwidthDownBytes}   {bandwidthUpBytes}</small>",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected 󰌙",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "interval": 1,
+        "on-click-right": "kitty -e nmtui",
+        "max-length": 30
+    },
+
+    "bluetooth": {
+	    "format": "  ",
+	    "format-disabled": "  ",
+	    "format-connected": " {num_connections}",
+	    "tooltip-format": "{device_alias}",
+	    "tooltip-format-connected": " {device_enumerate}",
+	    "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "rfkill toggle bluetooth",
+        "on-click-right": "blueman-manager"
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon} ",
+        "tooltip-format": "Power Profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+          "default": "",
+          "performance": "",
+          "balanced": "",
+          "power-saver": ""
+        }
+    },
+
+    "custom/power_btn": {
+        "format" : "{icon}",
+        "format-icons": [""],
+        //"on-click": "sh -c'(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+        "on-click": "wlogout --protocol layer-shell",
+        "tooltip-format": "Power Options",
+        "tooltip": true
+    },
+
+    "custom/lock_screen": {
+        "format": "{icon}",        
+        "format-icons": [""],
+        "on-click": "hyprlock",
+        "tooltip-format": "Lock Screen",
+        "tooltip": true
+    },
+
+    "custom/updates": {
+        //"format": " {}",
+        "format": " {}",
+        // "tooltip-format": "Aggiorna il Sistema\n<small>Pacchetti: {}</small>",
+        "escape": true,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/updates.sh",
+        "restart-interval": 3600,
+        "on-click": "kitty --title Updates sh -c ~/.config/waybar/scripts/installaupdates.sh",
+        "on-click-right": "kitty --title 'Installed Packages' sh -c ~/.config/waybar/scripts/listpackages.sh",
+        "tooltip": true
+    },
+
+    "custom/wol": {
+        "format": "{icon}",
+        "format-icons": [""],
+        "tooltip-format": "Wake and Connect to Host:\n<small>{}</small>",
+        "escape": true,
+        "return-type":"json",
+        "exec":"~/.config/waybar/scripts/tailscaleinfo.sh",
+        "interval": 60,
+        "on-click": "~/.config/waybar/scripts/wol.sh",
+        "on-click-right": "kitty --title 'Connect to '$(cat ~/.config/.secrets/hostname.txt)'' sh -c ~/.config/waybar/scripts/connectssh.sh",
+        "tooltip": true
+    },
+
+    "custom/swaync": {
+        "format" : "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+            "none": " ",
+            "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+            "dnd-none": " "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "escape": true,
+        "tooltip": false
+    }, 
+
+    "custom/github": {
+        "format": " {}",
+        "tooltip-format": "GitHub Notifications",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/scripts/github.sh",
+        "on-click": "xdg-open https://github.com/notifications",
+        "tooltip": true
+    },
+
+    "custom/wofi": {
+        "format": "{icon}",
+        "format-icons": [""],
+        "tooltip-format": "Applications",
+        "on-click": "wofi --show drun -n"
+
+    },
+
+    "custom/wl-gammarelay-temperature": {
+        "format": "{} {icon}",
+        "format-alt": "{icon}", 
+        "format-icons": [""],
+        "exec": "wl-gammarelay --subscribe Temperature",
+        "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
+        "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100",
+        "tooltip-format": "Screen Temperature: {} K",
+        "tooltip": true
+    },
+
+    "custom/media": {
+        "format": "{}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec": "~/.config/waybar/scripts/mediaplayer.py", // Script in resources/custom_modules folder
+        "tooltip": true,
+        "tooltip-format": "{}"
+    },
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+    }
+}

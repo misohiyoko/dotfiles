@@ -30,6 +30,7 @@ lib32-vulkan-radeon
 linux
 linux-firmware
 mesa
+mpv
 nano
 networkmanager
 noto-fonts
@@ -42,6 +43,7 @@ pipewire-pulse
 powertop
 qt5-wayland
 qt6-wayland
+radeontop
 smartmontools
 starship
 steam

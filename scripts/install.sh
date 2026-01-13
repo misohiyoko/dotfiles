@@ -92,13 +92,25 @@ if [ -d "$DOTFILES_DIR/.config" ]; then
     echo ""
 fi
 
+# .local/bin内のスクリプトをリンク
+if [ -d "$DOTFILES_DIR/.local/bin" ]; then
+    echo "--- .local/bin 配下のスクリプトをリンク中 ---"
+    for item in "$DOTFILES_DIR/.local/bin"/*; do
+        if [ -e "$item" ]; then
+            basename_item="$(basename "$item")"
+            create_symlink "$item" "$HOME_DIR/.local/bin/$basename_item"
+        fi
+    done
+    echo ""
+fi
+
 # ホーム直下のdotfilesをリンク
 echo "--- ホーム直下のdotfilesをリンク中 ---"
 for item in "$DOTFILES_DIR"/.*; do
     basename_item="$(basename "$item")"
 
     # 特殊ディレクトリをスキップ
-    if [[ "$basename_item" == "." || "$basename_item" == ".." || "$basename_item" == ".git" || "$basename_item" == ".config" ]]; then
+    if [[ "$basename_item" == "." || "$basename_item" == ".." || "$basename_item" == ".git" || "$basename_item" == ".config" || "$basename_item" == ".local" ]]; then
         continue
     fi
 

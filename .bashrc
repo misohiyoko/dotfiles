@@ -20,3 +20,8 @@ source /usr/share/nvm/init-nvm.sh
 
 eval "$(starship init bash)"
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/kodama/.lmstudio/bin"
+# End of LM Studio CLI section
+

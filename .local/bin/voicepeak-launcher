@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# 1. VOICEPEAKのインストールディレクトリへ移動 (これで実行エラーが直ります)
+# ※ご自身のインストールパスに合わせて変更してください
+cd ~/Voicepeak
+
+# 2. 日本語入力(Fcitx5)用の環境変数を強制適用 (これで日本語入力問題を直します)
+export WAYLAND_DISPLAY=""
+export GDK_BACKEND=x11
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export GLFW_IM_MODULE=ibus # 一部環境で必要な場合あり、基本はfcitxでOK
+export GTK_IM_MODULE=xim
+
+# 3. VOICEPEAKを実行 (引数も渡せるように "$@" をつける)
+./voicepeak "$@"

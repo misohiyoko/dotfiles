@@ -8,6 +8,23 @@ This is a personal dotfiles repository for Arch Linux with Hyprland (Wayland) co
 
 ## Common Commands
 
+### Initial Setup (New PC)
+```bash
+# Complete initialization (recommended for new PC)
+./scripts/initialize.sh
+
+# Initialize with options
+./scripts/initialize.sh --skip-packages    # Skip package restoration
+./scripts/initialize.sh --skip-wallpaper   # Skip wallpaper setup
+./scripts/initialize.sh --skip-voicepeak   # Skip VOICEPEAK installation
+
+# This script runs in order:
+# 1. install.sh          - Create symlinks
+# 2. restore-packages.sh - Install packages
+# 3. set-wallpaper.sh    - Set wallpaper
+# 4. install-voicepeak.sh - Install VOICEPEAK (optional)
+```
+
 ### Package Management
 ```bash
 # Save current package list to repository
@@ -104,13 +121,23 @@ Key services launched in hyprland.conf:54-64:
 ### User Scripts (.local/bin)
 
 Custom launcher scripts in `.local/bin/`:
-- `voicepeak-launcher` - Wrapper for VOICEPEAK application that:
-  - Changes to ~/Voicepeak directory before execution
-  - Forces X11 backend (disables Wayland) for compatibility
-  - Sets fcitx5 environment variables for Japanese input support
-  - Allows passing arguments through to the voicepeak binary
+- `voicepeak-launcher` - Legacy wrapper for VOICEPEAK (replaced by AUR package, kept for reference)
 
 Note: The `claude` symlink to Claude CLI installation is not tracked in this repository as it's managed externally by the Claude CLI installer.
+
+### Custom AUR Packages (aur-packages/)
+
+**VOICEPEAK** - Japanese Text-to-Speech Software
+- Location: `aur-packages/voicepeak/`
+- Installation: Run `./scripts/install-voicepeak.sh` (recommended) or `./aur-packages/voicepeak/install-voicepeak.sh`
+- Package includes:
+  - PKGBUILD for building the package
+  - Launcher script with X11/Fcitx5 environment setup
+  - Desktop entry for wofi/application launcher integration
+- Downloads from: https://www.ah-soft.com/voice/setup/voicepeak-downloader-linux64
+- System install location: `/opt/voicepeak` (read-only)
+- User data location: `~/.local/share/voicepeak/` (writable, copied on first run)
+- Launch from: wofi (Super+R) or terminal (`voicepeak`)
 
 ## Development Workflow
 
@@ -121,7 +148,12 @@ When making configuration changes:
 4. Commit changes to git
 
 When setting up on new system:
-1. Clone repository
-2. Run `./scripts/restore-packages.sh` to install packages
-3. Run `./scripts/install.sh` to create symlinks
-4. Restart shell with `exec $SHELL`
+1. Clone repository: `git clone <repo-url> ~/dotfiles`
+2. Run initialization script: `cd ~/dotfiles && ./scripts/initialize.sh`
+   - Or manually run scripts in order:
+     - `./scripts/install.sh` - Create symlinks
+     - `./scripts/restore-packages.sh` - Install packages
+     - `./scripts/set-wallpaper.sh --random` - Set wallpaper
+     - `./scripts/install-voicepeak.sh` - Install VOICEPEAK (optional)
+3. Restart shell: `exec $SHELL`
+4. Restart Hyprland or re-login for full effect

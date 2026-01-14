@@ -1,0 +1,3 @@
+force_ltr_text_direction no
+font_family      monospace
+symbol_map U+2500-U+257F monospace

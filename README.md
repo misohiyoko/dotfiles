@@ -1,131 +1,118 @@
 # Dotfiles
 
-個人的な設定ファイルとパッケージリストの管理リポジトリ
+Personal dotfiles for Arch Linux with Hyprland (Wayland) configuration.
 
-## 環境
+## Quick Start (New PC)
 
-- OS: Arch Linux
-- ディスプレイサーバー: Wayland
-- ウィンドウマネージャー: Hyprland
-- ターミナル: Kitty
-- 入力メソッド: fcitx5 + Mozc
-
-## ディレクトリ構成
-
-```
-dotfiles/
-├── .config/           # 各種アプリの設定ファイル
-│   ├── hypr/         # Hyprland設定
-│   ├── kitty/        # Kittyターミナル設定
-│   ├── fcitx5/       # fcitx5入力メソッド設定
-│   └── ...
-├── wallpaper/        # 壁紙ファイル
-├── scripts/          # 管理スクリプト
-│   ├── backup.sh              # 設定ファイルをdotfilesにコピー
-│   ├── install.sh             # シンボリックリンクを展開
-│   ├── save-packages.sh       # パッケージリストを保存
-│   ├── restore-packages.sh    # パッケージリストから復元
-│   ├── set-wallpaper.sh       # 壁紙を設定
-│   └── wallpaper-timer.sh     # 定期的に壁紙をランダム変更
-└── packages/         # パッケージリスト
-    ├── pkglist.txt            # 公式リポジトリパッケージ
-    ├── aurlist.txt            # AURパッケージ
-    └── pkglist-detailed.txt   # 詳細情報
-```
-
-## 使い方
-
-### 初回セットアップ（このリポジトリをクローンした環境）
-
-1. リポジトリをクローン
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+# Clone repository
+git clone <repo-url> ~/dotfiles
+
+# Run initialization script
 cd ~/dotfiles
+./scripts/initialize.sh
+
+# Restart shell
+exec $SHELL
+
+# Restart Hyprland or re-login
 ```
 
-2. パッケージをインストール
+This will automatically:
+1. Create symlinks for all configuration files
+2. Install packages from package lists
+3. Set up wallpaper
+4. Optionally install VOICEPEAK
+
+## What's Included
+
+### System Configuration
+- **Window Manager**: Hyprland (Wayland compositor)
+- **Status Bar**: Waybar with custom modules
+- **Terminal**: Kitty
+- **App Launcher**: Wofi
+- **Shell Prompt**: Starship (Tokyo Night theme)
+- **Input Method**: Fcitx5 with Mozc (Japanese)
+
+### Custom Scripts
+- `initialize.sh` - Complete setup automation
+- `install.sh` - Create symlinks for dotfiles
+- `backup.sh` - Copy configs from home to repository
+- `restore-packages.sh` / `save-packages.sh` - Package management
+- `set-wallpaper.sh` - Wallpaper management
+- `install-voicepeak.sh` - VOICEPEAK installation
+
+### Custom AUR Packages
+- **VOICEPEAK** - Japanese TTS software with proper Hyprland integration
+
+## Manual Setup
+
+If you prefer manual setup or want to run specific parts:
+
 ```bash
+# 1. Create symlinks
+./scripts/install.sh
+
+# 2. Install packages
+./scripts/restore-packages.sh
+
+# 3. Set wallpaper
+./scripts/set-wallpaper.sh --random
+
+# 4. Install VOICEPEAK (optional)
+./scripts/install-voicepeak.sh
+```
+
+## Configuration Files
+
+All managed configuration files are defined in `scripts/backup.sh`. Key locations:
+
+- `.config/hypr/` - Hyprland configuration
+- `.config/waybar/` - Status bar configuration
+- `.config/kitty/` - Terminal configuration
+- `.config/starship.toml` - Shell prompt
+- `.bashrc` - Bash configuration
+- `.local/bin/` - User scripts
+
+## Package Management
+
+```bash
+# Save current packages
+./scripts/save-packages.sh
+
+# Restore packages
 ./scripts/restore-packages.sh
 ```
 
-3. 設定ファイルをシンボリックリンクで展開
-```bash
-./scripts/install.sh
-```
+Package lists are stored in `packages/`:
+- `pkglist.txt` - Official repository packages
+- `aurlist.txt` - AUR packages
+- `pkglist-detailed.txt` - Detailed version info
 
-4. シェルを再起動
-```bash
-exec $SHELL
-```
+## Development
 
-### 設定を更新する場合
+See [CLAUDE.md](CLAUDE.md) for detailed documentation and common commands.
 
-1. 現在の設定ファイルをdotfilesにバックアップ
-```bash
-./scripts/backup.sh
-```
+## Monitor Setup
 
-2. パッケージリストを更新
-```bash
-./scripts/save-packages.sh
-```
+Configured for dual monitors:
+- Primary: 4K@120Hz (HDMI-A-1) scaled 2x
+- Secondary: 1080p@60Hz (DP-2)
 
-3. 変更をコミット
-```bash
-git add .
-git commit -m "Update configs"
-git push
-```
+Workspace assignments:
+- Workspaces 1-10: All monitors
+- Workspaces 11-12: DP-2
+- Workspaces 13-14: HDMI-A-1
 
-### 壁紙を設定する
+## Key Bindings
 
-壁紙は `~/dotfiles/wallpaper/` ディレクトリで管理されます。
+- `Super+Q` - Terminal
+- `Super+R` - App launcher (wofi)
+- `Super+C` - Close window
+- `Super+M` - Exit Hyprland
+- `Super+V` - Clipboard history
+- `Super+1-0` - Switch workspaces
 
-```bash
-# 対話的に壁紙を選択
-./scripts/set-wallpaper.sh
+## License
 
-# 壁紙を指定して設定
-./scripts/set-wallpaper.sh wallpaper.jpg
-
-# ランダムに壁紙を設定
-./scripts/set-wallpaper.sh --random
-
-# 定期的に壁紙を変更（30分ごと）
-./scripts/wallpaper-timer.sh 30
-```
-
-新しい壁紙を追加：
-```bash
-# 壁紙ファイルを追加
-cp /path/to/your/wallpaper.jpg ~/dotfiles/wallpaper/
-
-# Git管理に追加
-cd ~/dotfiles
-git add wallpaper/
-git commit -m "Add new wallpaper"
-```
-
-## 注意事項
-
-- `install.sh` 実行時、既存のファイルは自動的にバックアップされます
-- バックアップは `~/.dotfiles_backup_YYYYMMDD_HHMMSS/` に保存されます
-- `--force` オプションで確認なしで上書きできます
-- シンボリックリンク使用時は、設定ファイルの直接編集が即座にdotfilesに反映されます
-
-## トラブルシューティング
-
-### Xwaylandアプリのキーボード配列問題
-
-Hyprlandで一部のX11アプリ（SDL使用アプリなど）がUSキーボード配列になる場合：
-
-```bash
-# Hyprland設定に追加
-exec-once = setxkbmap -layout jp
-```
-
-詳細: [issues/001-xwayland-keyboard.md](issues/001-xwayland-keyboard.md)
-
-## ライセンス
-
-MIT License
+Personal dotfiles - use at your own discretion.

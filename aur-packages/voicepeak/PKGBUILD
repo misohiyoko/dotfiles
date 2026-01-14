@@ -1,0 +1,68 @@
+# Maintainer: Your Name <your@email.com>
+pkgname=voicepeak
+pkgver=1.3.14
+pkgrel=1
+pkgdesc="VOICEPEAK - Japanese Text-to-Speech Software"
+arch=('x86_64')
+url="https://www.ah-soft.com/voice/vp/"
+license=('custom')
+depends=('glibc' 'gcc-libs')
+options=(!strip)
+source=("https://www.ah-soft.com/voice/setup/voicepeak-downloader-linux64"
+        "voicepeak.desktop"
+        "voicepeak-launcher.sh")
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP')
+
+prepare() {
+    chmod +x voicepeak-downloader-linux64
+}
+
+build() {
+    # Download VOICEPEAK using the downloader
+    # User needs to run the downloader manually first
+    echo "Please run voicepeak-downloader-linux64 manually to download VOICEPEAK"
+    echo "Extract the contents to your home directory first"
+}
+
+package() {
+    # Validate source directory exists
+    if [ ! -d "${HOME}/Voicepeak" ]; then
+        error "~/Voicepeak directory not found!"
+        error "Please extract VOICEPEAK to ~/Voicepeak before building this package."
+        error "Download from: https://www.ah-soft.com/voice/setup/voicepeak-downloader-linux64"
+        return 1
+    fi
+
+    if [ ! -f "${HOME}/Voicepeak/voicepeak" ]; then
+        error "voicepeak binary not found in ~/Voicepeak/"
+        error "Please ensure VOICEPEAK is properly extracted."
+        return 1
+    fi
+
+    # Create installation directory
+    install -d "${pkgdir}/opt/${pkgname}"
+
+    # Copy VOICEPEAK files from user's home directory
+    echo "Copying VOICEPEAK files from ~/Voicepeak..."
+    cp -r "${HOME}/Voicepeak"/* "${pkgdir}/opt/${pkgname}/"
+    chmod +x "${pkgdir}/opt/${pkgname}/voicepeak"
+
+    # Copy initial usersettings to a template directory
+    if [ -d "${pkgdir}/opt/${pkgname}/usersettings" ]; then
+        # Keep usersettings as a template for first-run copy
+        chmod -R 755 "${pkgdir}/opt/${pkgname}/usersettings"
+    fi
+
+    # Install launcher script
+    install -Dm755 voicepeak-launcher.sh "${pkgdir}/usr/bin/voicepeak"
+
+    # Install desktop file
+    install -Dm644 voicepeak.desktop "${pkgdir}/usr/share/applications/voicepeak.desktop"
+
+    # Install license
+    if [ -f "${HOME}/Voicepeak/license-ja.txt" ]; then
+        install -Dm644 "${HOME}/Voicepeak/license-ja.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    fi
+}

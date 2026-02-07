@@ -1,8 +1,13 @@
+amf-amdgpu-pro
+freerouting
 gtk2
 jetbrains-toolbox
 lib32-gtk2
+libva-vdpau-driver
 lmstudio
 openai-codex-bin
+regionset
 visual-studio-code-bin
 yay
 yay-debug
+zoom

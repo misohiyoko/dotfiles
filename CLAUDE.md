@@ -75,6 +75,7 @@ The repository uses symlinks to manage configuration files, allowing direct edit
 Defined in scripts/backup.sh:12-35, the managed configuration includes:
 - Window manager: `.config/hypr/` (Hyprland)
 - Terminal: `.config/kitty/`
+- Text editor: `.config/nvim/` (Neovim with basic Lua config)
 - Input method: `.config/fcitx5/`
 - Status bar: `.config/waybar/`
 - App launcher: `.config/wofi/`

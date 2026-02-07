@@ -21,6 +21,7 @@ CONFIG_FILES=(
     ".config/wofi"
     ".config/waybar"
     ".config/yay"
+    ".config/nvim"
     ".config/starship.toml"
 
     # ホーム直下のdotfiles

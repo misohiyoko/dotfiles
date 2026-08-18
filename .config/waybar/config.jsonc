@@ -1,5 +1,6 @@
 {
     "layer": "top",
+    "output": "DP-2",
     "position": "bottom",
     "mod": "dock",
     "exclusive": true,
@@ -25,6 +26,7 @@
 		"group/hardware",
 		"group/audio",
 		"tray",
+		"custom/bd-drive",
 		"custom/swaync",
         "custom/power"
 	],

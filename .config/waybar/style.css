@@ -97,6 +97,7 @@ tooltip {
 #custom-wl-gammarelay-temperature,
 #pulseaudio,
 #tray,
+#custom-bd-drive,
 #custom-swaync,
 #custom-power {
     background-color: #2f354a;
@@ -246,6 +247,23 @@ window#waybar.empty #window {
 
 #tray {
     border-radius: 0px;
+}
+
+#custom-bd-drive {
+    border-radius: 0px;
+}
+
+#custom-bd-drive.enabled {
+    color: #a6e3a1; /* Green - BD drive enabled */
+}
+
+#custom-bd-drive.disabled {
+    color: #f38ba8; /* Red - BD drive disabled (Proton mode) */
+}
+
+#custom-bd-drive.missing {
+    color: #6c7086; /* Gray - Drive not found */
+    opacity: 0.5;
 }
 
 #custom-swaync {

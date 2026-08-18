@@ -8,9 +8,5 @@ temp/
 pkg/
 src/
 
-# Package build files
-aur-packages/*/pkg/
-aur-packages/*/src/
-aur-packages/*/*.tar.gz
-aur-packages/*/*.tar.xz
-aur-packages/*/*.pkg.tar.zst
+# Generated application state
+.config/fcitx5/conf/cached_layouts

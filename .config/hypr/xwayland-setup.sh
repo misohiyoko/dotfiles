@@ -3,4 +3,4 @@
 while ! xset q &>/dev/null; do
     sleep 0.5
 done
-setxkbmap -layout jp
+setxkbmap -model jp106 -layout jp

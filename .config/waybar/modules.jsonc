@@ -21,7 +21,7 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "active-only": false,
-        "all-outputs": false,
+        "all-outputs": true,
         "sort-by-number": false,
         "on-click": "activate",
         "format": "{name}{icon}{windows}",
@@ -236,32 +236,6 @@
         "tooltip-format": "Lock Screen",
         "tooltip": true
     },
-    "custom/updates": {
-        //"format": " {}",
-        "format": " {}",
-        // "tooltip-format": "Aggiorna il Sistema\n<small>Pacchetti: {}</small>",
-        "escape": true,
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/updates.sh",
-        "restart-interval": 3600,
-        "on-click": "kitty --title Updates sh -c ~/.config/waybar/scripts/installaupdates.sh",
-        "on-click-right": "kitty --title 'Installed Packages' sh -c ~/.config/waybar/scripts/listpackages.sh",
-        "tooltip": true
-    },
-    "custom/wol": {
-        "format": "{icon}",
-        "format-icons": [
-            ""
-        ],
-        "tooltip-format": "Wake and Connect to Host:\n<small>{}</small>",
-        "escape": true,
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/tailscaleinfo.sh",
-        "interval": 60,
-        "on-click": "~/.config/waybar/scripts/wol.sh",
-        "on-click-right": "kitty --title 'Connect to '$(cat ~/.config/.secrets/hostname.txt)'' sh -c ~/.config/waybar/scripts/connectssh.sh",
-        "tooltip": true
-    },
     "custom/swaync": {
         "format": "{icon}",
         "format-icons": {
@@ -276,15 +250,6 @@
         "on-click": "sleep 0.1 && swaync-client -t -sw",
         "escape": true,
         "tooltip": false
-    },
-    "custom/github": {
-        "format": " {}",
-        "tooltip-format": "GitHub Notifications",
-        "return-type": "json",
-        "interval": 60,
-        "exec": "~/.config/waybar/scripts/github.sh",
-        "on-click": "xdg-open https://github.com/notifications",
-        "tooltip": true
     },
     "custom/wofi": {
         "format": "{icon}",
@@ -309,14 +274,13 @@
     "custom/media": {
         "format": "{}",
         "escape": true,
-        "return-type": "json",
         "max-length": 40,
         "on-click": "playerctl play-pause",
         "on-click-right": "playerctl stop",
         "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
-        "exec": "~/.config/waybar/scripts/mediaplayer.py", // Script in resources/custom_modules folder
+        "exec": "playerctl metadata --follow --format '{{artist}} - {{title}}'",
         "tooltip": true,
         "tooltip-format": "{}"
     },
@@ -331,5 +295,13 @@
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }
+    },
+    "custom/bd-drive": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/bd-drive.sh",
+        "on-click": "~/.config/waybar/scripts/bd-drive.sh toggle",
+        "interval": 5,
+        "tooltip": true
     }
 }

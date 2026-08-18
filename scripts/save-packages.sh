@@ -19,10 +19,6 @@ echo "✓ 公式リポジトリパッケージ: $PACKAGES_DIR/pkglist.txt"
 pacman -Qqem > "$PACKAGES_DIR/aurlist.txt"
 echo "✓ AURパッケージ: $PACKAGES_DIR/aurlist.txt"
 
-# 全パッケージの詳細情報（バックアップ用）
-pacman -Qe > "$PACKAGES_DIR/pkglist-detailed.txt"
-echo "✓ 詳細情報: $PACKAGES_DIR/pkglist-detailed.txt"
-
 echo ""
 echo "統計情報:"
 echo "  公式パッケージ: $(wc -l < "$PACKAGES_DIR/pkglist.txt") 個"
